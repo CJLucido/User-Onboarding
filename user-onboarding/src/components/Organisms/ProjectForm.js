@@ -1,4 +1,5 @@
-import React, {useState, useEffect} from 'react'
+import React, {useState, useEffect} from 'react';
+import axios from 'axios';
 import styled from 'styled-components';
 import {withFormik, Field, Form} from "formik";
 import * as Yup from 'yup';
@@ -79,7 +80,16 @@ const FormikProjectForm = withFormik({
         //password: Yup.string().matches(/^(?=.*[A-Za-z])(?=.*d)(?=.*[@$!%*#?&])[A-Za-zd@$!%*#?&]{}$/,
         //"Must Contain One Uppercase, One Lowercase, One Number and one special case Character"),
         TOS: Yup.boolean().oneOf([true],"Must agree for service")
-    })
+    }),
+    handleSubmit(values, {setStatus}){
+        axios.post('https://reqres.in/api/users')
+        .then(res => {
+            console.log("this is the response", res)
+        })
+        .catch(err => {
+            console.log("There are no more rations", err)
+        })
+    }
 
 
 
