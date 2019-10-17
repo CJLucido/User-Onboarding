@@ -25,25 +25,25 @@ function ProjectForm({values, handleChange, touched, errors}){
         <StyledForm>
             <Form>
                 <label name='name'/>
-                <Field name='name' type='text' placeholder='Enter your name here' value={values.name}/>
+                <Field name='name' type='text' placeholder='Enter your name here' value={values.name} onChange={handleChange}/>
                 {touched.name && errors.name && 
                     (<p>{errors.name}</p>)
                 }
 
                 <label name='email'/>
-                <Field name='email' type='text' placeholder='Enter your email here' values={values.email}/>
+                <Field name='email' type='text' placeholder='Enter your email here' values={values.email} onChange={handleChange}/>
                 {touched.email && errors.email && (
                     <p>{errors.email}</p>
                 )}
 
                 <label name='password'/>
-                <Field name='password' type='password' placeholder='Enter your password here' value={values.password}/>
+                <Field name='password' type='password' placeholder='Enter your password here' value={values.password} onChange={handleChange}/>
                 {touched.password && errors.password && (
                     <p>{errors.password}</p>
                 )}
 
                 <label name='TOS'/>
-                <Field name='TOS' type='checkbox' placeholder='Check if you agree to the Terms of Service' value={values.TOS}/>
+                <Field name='TOS' type='checkbox' placeholder='Check if you agree to the Terms of Service' value={values.TOS} onChange={handleChange}/>
                 {errors.TOS && (
                     <p>{errors.TOS}</p>
                 )}
