@@ -57,6 +57,15 @@ function ProjectForm({values, handleChange, touched, errors, status}){
                 <button type="submit">Submit</button>
             
             </Form>
+          
+                    {users.map(user => (
+                        <ul key={user.id}>
+                        <li>Name: {user.name}</li>
+                        <li>Email: {user.email}</li>
+                        </ul>
+                    ))}
+            
+           
         </StyledForm>
     )
 }
@@ -82,9 +91,10 @@ const FormikProjectForm = withFormik({
         TOS: Yup.boolean().oneOf([true],"Must agree for service")
     }),
     handleSubmit(values, {setStatus}){
-        axios.post('https://reqres.in/api/users')
+        axios.post('https://reqres.in/api/users', values)
         .then(res => {
-            console.log("this is the response", res)
+            console.log("this is the response", res);
+            setStatus(res.data)
         })
         .catch(err => {
             console.log("There are no more rations", err)
