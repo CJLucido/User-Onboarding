@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useState, useEffect} from 'react'
 import styled from 'styled-components';
 import {withFormik, Field, Form} from "formik";
 import * as Yup from 'yup';
@@ -19,7 +19,12 @@ const StyledForm = styled.div`
 
 //
 
-function ProjectForm({values, handleChange, touched, errors}){
+function ProjectForm({values, handleChange, touched, errors, status}){
+
+        const [users, setUsers] = useState([])
+        useEffect(()=> {
+            status && setUsers(users => [...users, status]);
+        }, [status])
 
     return(
         <StyledForm>
