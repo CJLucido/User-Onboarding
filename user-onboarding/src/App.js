@@ -4,7 +4,7 @@ import './App.css';
 
 import styled from 'styled-components'
 
-import ProjectForm from './components/Organisms/ProjectForm'
+import FormikProjectForm from './components/Organisms/ProjectForm'
 
 const StyledApp = styled.div`
       display:flex;
@@ -25,7 +25,7 @@ function App() {
   return (
     <StyledApp>
       <h1>App</h1>
-      <ProjectForm/>
+      <FormikProjectForm/>
     </StyledApp>
   );
 }
