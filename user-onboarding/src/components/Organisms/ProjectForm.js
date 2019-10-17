@@ -84,17 +84,20 @@ const FormikProjectForm = withFormik({
         name: Yup.string().min(2, "Too short of a name, Spaghetti O's"),
         email: Yup.string().required("Must enter an email"),
         email: Yup.string().email(),
+       // email: Yup.mixed().notOneOf(),
         password: Yup.string().required("Must enter a password"),
         password: Yup.string().min(6, "Too Short a password."),
-        //password: Yup.string().matches(/^(?=.*[A-Za-z])(?=.*d)(?=.*[@$!%*#?&])[A-Za-zd@$!%*#?&]{}$/,
+        //password: Yup.string().matches(/^(?=.*[A-Za-z])(?=.*d)(?=.*[@$!%*#?&])[A-Za-zd@$!%*#?&]$/,
         //"Must Contain One Uppercase, One Lowercase, One Number and one special case Character"),
         TOS: Yup.boolean().oneOf([true],"Must agree for service")
     }),
-    handleSubmit(values, {setStatus}){
+    handleSubmit(values, {setStatus, resetForm}){
+        resetForm();
         axios.post('https://reqres.in/api/users', values)
         .then(res => {
             console.log("this is the response", res);
-            setStatus(res.data)
+            setStatus(res.data);
+
         })
         .catch(err => {
             console.log("There are no more rations", err)
