@@ -37,7 +37,7 @@ function ProjectForm({values, handleChange, touched, errors}){
                 )}
 
                 <label name='password'/>
-                <Field name='password' type='text' placeholder='Enter your password here' value={values.password}/>
+                <Field name='password' type='password' placeholder='Enter your password here' value={values.password}/>
                 {touched.password && errors.password && (
                     <p>{errors.password}</p>
                 )}
@@ -56,7 +56,7 @@ function ProjectForm({values, handleChange, touched, errors}){
 }
 
 const FormikProjectForm = withFormik({
-    mapPropsToValues({}){
+    mapPropsToValues({name, email, password, TOS}){
         return{
             name: "",
             email: "",
@@ -66,8 +66,13 @@ const FormikProjectForm = withFormik({
     },
     validationSchema: Yup.object().shape({
         name: Yup.string().required("Must enter a name"),
+        name: Yup.string().min(2, "Too short of a name, Spaghetti O's"),
         email: Yup.string().required("Must enter an email"),
+        email: Yup.string().email(),
         password: Yup.string().required("Must enter a password"),
+        password: Yup.string().min(6, "Too Short a password."),
+        //password: Yup.string().matches(/^(?=.*[A-Za-z])(?=.*d)(?=.*[@$!%*#?&])[A-Za-zd@$!%*#?&]{}$/,
+        //"Must Contain One Uppercase, One Lowercase, One Number and one special case Character"),
         TOS: Yup.boolean().oneOf([true],"Must agree for service")
     })
 
