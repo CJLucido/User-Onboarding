@@ -43,7 +43,7 @@ function ProjectForm({values, handleChange, touched, errors, status}){
                 )}
 
                 <label name='password'/>
-                <Field name='password' type='password' placeholder='Enter your password here' value={values.password} onChange={handleChange}/>
+                <Field name='password' type='text' placeholder='Enter your password here' value={values.password} onChange={handleChange}/>
                 {touched.password && errors.password && (
                     <p>{errors.password}</p>
                 )}
@@ -87,8 +87,8 @@ const FormikProjectForm = withFormik({
        // email: Yup.mixed().notOneOf(),
         password: Yup.string().required("Must enter a password"),
         password: Yup.string().min(6, "Too Short a password."),
-        //password: Yup.string().matches(/^(?=.*[A-Za-z])(?=.*d)(?=.*[@$!%*#?&])[A-Za-zd@$!%*#?&]$/,
-        //"Must Contain One Uppercase, One Lowercase, One Number and one special case Character"),
+        // password: Yup.string().matches(/^(?=.*[A-Za-z])(?=.*d)(?=.*[@$!%*#?&])[A-Za-zd@$!%*#?&]{}$/,
+        // "Must Contain One Uppercase, One Lowercase, One Number and one special case Character"),
         TOS: Yup.boolean().oneOf([true],"Must agree for service")
     }),
     handleSubmit(values, {setStatus, resetForm}){

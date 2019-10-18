@@ -25,7 +25,7 @@ function App() {
   return (
     <StyledApp>
       <h1>App</h1>
-      <FormikProjectForm/>
+      <FormikProjectForm class="FormComponentOne"/>
     </StyledApp>
   );
 }
